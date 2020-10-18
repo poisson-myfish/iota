@@ -12,6 +12,5 @@ int main() {
 	while (iotaTokenizerHasNext(tokenizer)) {
 		iotaTokenizerAdvance(tokenizer);
 	}
-	IotaToken* token = tokenizer->tokens->elements[1];
-	printf("'%s'\n", token->value);
+	IotaToken* token = tokenizer->tokens->elements[0];
 }

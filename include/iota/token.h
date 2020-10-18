@@ -2,8 +2,10 @@
 #define IOTA_TOKEN_H
 #include <stdlib.h>
 
+
 typedef enum
 {
+	TOKEN_NONE,
 	TOKEN_NEW, TOKEN_ID, TOKEN_COLON, TOKEN_SEMI,
 	TOKEN_INTEGER
 } IotaTokenType;
@@ -17,5 +19,6 @@ typedef struct
 } IotaToken;
 
 IotaToken* iotaToken(IotaTokenType type, char* value, size_t size);
+IotaToken* iotaTokenNone();
 
 #endif

@@ -5,11 +5,12 @@
 #include <string.h>
 #include <stdio.h>
 
-IotaToken* tokenizeExpression(IotaTokenizer* tokenizer);
-void eatWhitespace(IotaTokenizer* tokenizer);
-void nextCharacter(IotaTokenizer* tokenizer);
+static IotaToken* getToken(IotaTokenizer* tokenizer);
+static void eatWhitespace(IotaTokenizer* tokenizer);
+static void nextCharacter(IotaTokenizer* tokenizer);
 
-IotaToken* collectId(IotaTokenizer* tokenizer);
+static IotaToken* collectId(IotaTokenizer* tokenizer);
+static IotaToken* getKeyword(char* value, size_t length);
 
 
 IotaTokenizer* iotaTokenizer(const char* code, size_t codeSize) {
@@ -26,7 +27,8 @@ IotaTokenizer* iotaTokenizer(const char* code, size_t codeSize) {
 void iotaTokenizerAdvance(IotaTokenizer* tokenizer) {
 	if (tokenizer->index < tokenizer->codeSize && tokenizer->character != '\0') {
 		eatWhitespace(tokenizer);
-	    iotaListAppend(tokenizer->tokens, tokenizeExpression(tokenizer));
+		
+	    iotaListAppend(tokenizer->tokens, getToken(tokenizer));
 		
 		nextCharacter(tokenizer);
 		eatWhitespace(tokenizer);
@@ -42,7 +44,7 @@ int iotaTokenizerHasNext(IotaTokenizer* tokenizer) {
 
 
 // Private Functions
-IotaToken* tokenizeExpression(IotaTokenizer* tokenizer) {
+static IotaToken* getToken(IotaTokenizer* tokenizer) {
 	if (isalpha(tokenizer->character)) {
 		return collectId(tokenizer);
 	}
@@ -50,20 +52,20 @@ IotaToken* tokenizeExpression(IotaTokenizer* tokenizer) {
 	return 0;
 }
 
-void eatWhitespace(IotaTokenizer* tokenizer) {
+static void eatWhitespace(IotaTokenizer* tokenizer) {
 	while (tokenizer->character == ' ' && tokenizer->index < tokenizer->codeSize) {
 		nextCharacter(tokenizer);
 	}
 }
 
-void nextCharacter(IotaTokenizer* tokenizer) {
+static void nextCharacter(IotaTokenizer* tokenizer) {
 	tokenizer->index += 1;
 	tokenizer->character = tokenizer->code[tokenizer->index];
 }
 
 
 // Collectors
-IotaToken* collectId(IotaTokenizer* tokenizer) {
+static IotaToken* collectId(IotaTokenizer* tokenizer) {
 	size_t initialIndex = tokenizer->index;
 
 	while (isalnum(tokenizer->character)) {
@@ -74,5 +76,18 @@ IotaToken* collectId(IotaTokenizer* tokenizer) {
 	char* id = malloc(idLength * sizeof(char));
 	memcpy(id, &tokenizer->code[initialIndex], idLength);
 
+	IotaToken* keyword = getKeyword(id, idLength);
+	if (keyword->type != TOKEN_NONE)
+		return keyword;
+	else
+		free(keyword);
+
 	return iotaToken(TOKEN_ID, id, idLength);
+}
+
+static IotaToken* getKeyword(char* value, size_t length) {
+	if (strcmp(value, "new") == 0)
+		return iotaToken(TOKEN_NEW, value, length);
+
+	return iotaTokenNone();
 }
