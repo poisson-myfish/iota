@@ -3,6 +3,7 @@
 #include <iota/list.h>
 #include <iota/token.h>
 #include <string.h>
+#include <iota/parser.h>
 
 int main() {
 	//	const char* code = "new    variable: 32;\0";
@@ -30,4 +31,14 @@ int main() {
 		IotaToken* token = (IotaToken*)tokens->elements[i];
 		printf("Value: %s, Type: %i\n", token->value, token->type);
 	}
+
+	IotaParser* parser = iotaParser(tokens);
+    while (iotaParserHasNext(parser))
+		iotaParserAdvance(parser);
+
+	IotaAst* ast = parser->ast;
+    IotaAst* module = (IotaAst*)ast->children->elements[0];
+	IotaAst* function = (IotaAst*)module->children->elements[0];
+	IotaAst* returnStatement = (IotaAst*)function->children->elements[0];
+	printf("%s\n", returnStatement->value);
 }

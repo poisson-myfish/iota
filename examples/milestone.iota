@@ -1,0 +1,5 @@
+module milestone;
+
+fun hello :: Int () {
+	return 42;
+}
