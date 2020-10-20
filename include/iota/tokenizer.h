@@ -13,7 +13,7 @@ typedef struct
 	IotaList* tokens;
 } IotaTokenizer;
 
-IotaTokenizer* iotaTokenizer(const char* code, size_t codeSize);
+IotaTokenizer* iotaTokenizer(char* code, size_t codeSize);
 void iotaTokenizerAdvance(IotaTokenizer* tokenizer);
 int iotaTokenizerHasNext(IotaTokenizer* tokenizer);
 

@@ -43,4 +43,6 @@ IotaAst* iotaReturnAst(char* returnValue, IotaNativeType type) {
 	ast->children = 0;
     ast->value = returnValue;
 	ast->valueType = type;
+
+	return ast;
 }

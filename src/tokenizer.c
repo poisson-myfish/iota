@@ -17,7 +17,7 @@ static IotaToken* collectCurly(IotaTokenizer* tokenizer);
 static IotaToken* collectParen(IotaTokenizer* tokenizer);
 static IotaToken* collectNumber(IotaTokenizer* tokenizer);
 
-IotaTokenizer* iotaTokenizer(const char* code, size_t codeSize) {
+IotaTokenizer* iotaTokenizer(char* code, size_t codeSize) {
 	IotaTokenizer* tokenizer = malloc(sizeof(IotaTokenizer));
 	tokenizer->code = code;
 	tokenizer->character = code[0];

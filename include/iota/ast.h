@@ -11,7 +11,7 @@ typedef enum
 
 typedef struct
 {
-	IotaAstType* type;
+	IotaAstType type;
 
 	char* name;
 	char* value;
