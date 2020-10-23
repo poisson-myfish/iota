@@ -19,3 +19,8 @@ $(EXEC): $(OBJECTS)
 clean:
 	@rm objects/*.o
 	@rm iota
+
+compile-examples:
+	@./iota
+	@llc -filetype=obj milestone.ll
+	@gcc milestone.o -o milestone

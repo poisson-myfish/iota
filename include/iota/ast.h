@@ -24,7 +24,7 @@ typedef struct
 IotaAst* iotaNoneAst();
 IotaAst* iotaRootAst();
 IotaAst* iotaModuleAst(char* name);
-IotaAst* iotaFunctionAst(char* name);
+IotaAst* iotaFunctionAst(char* name, IotaNativeType type);
 IotaAst* iotaReturnAst(char* returnValue, IotaNativeType type);
 
 #endif

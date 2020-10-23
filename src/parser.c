@@ -96,7 +96,16 @@ static IotaAst* collectFunctionDecl(IotaParser* parser) {
 	if (parser->token->type != TOKEN_DOUBLECOLON)
 		return iotaNoneAst();  // TODO: Throw an error
 	nextToken(parser);
-	nextToken(parser);  // TODO: This is the return type; Need to get it later
+
+	IotaNativeType returnType;
+	switch (parser->token->type) {
+	case TOKEN_T_INT:
+	    returnType = IOTA_TYPE_INT_32;
+		break;
+
+	default: break;
+	}
+	nextToken(parser);
 
 	if (parser->token->type != TOKEN_PARENLEFT)
 		return iotaNoneAst();  // TODO: Throw an error
@@ -109,7 +118,7 @@ static IotaAst* collectFunctionDecl(IotaParser* parser) {
 	if (parser->token->type != TOKEN_CURLYLEFT)
 		return iotaNoneAst();  // TODO: Throw an error
 
-	IotaAst* ast = iotaFunctionAst(name);
+	IotaAst* ast = iotaFunctionAst(name, returnType);
 	pushAst(parser, ast);
 
 	return ast;

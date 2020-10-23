@@ -4,10 +4,9 @@
 #include <iota/token.h>
 #include <string.h>
 #include <iota/parser.h>
+#include <iota/llvmGenerator.h>
 
 int main() {
-	//	const char* code = "new    variable: 32;\0";
-
 	FILE* file;
 	file = fopen("examples/milestone.iota", "r");
 	size_t characters = 0;
@@ -24,7 +23,7 @@ int main() {
 	while (iotaTokenizerHasNext(tokenizer)) {
 		iotaTokenizerAdvance(tokenizer);
 	}
-
+	
     IotaList* tokens = tokenizer->tokens;
 
 	for (size_t i = 0; i < tokens->elementCount; i++) {
@@ -36,9 +35,10 @@ int main() {
     while (iotaParserHasNext(parser))
 		iotaParserAdvance(parser);
 
-	IotaAst* ast = parser->ast;
-    IotaAst* module = (IotaAst*)ast->children->elements[0];
-	IotaAst* function = (IotaAst*)module->children->elements[0];
-	IotaAst* returnStatement = (IotaAst*)function->children->elements[0];
-	printf("%s\n", returnStatement->value);
+	IotaLLVMGenerator* generator = iotaLLVMGenerator(parser->ast);
+	char* bytecode = iotaLLVMGeneratorStart(generator);
+	printf("\n%s", bytecode);
+
+	FILE* outfile = fopen("milestone.ll", "w");
+	fputs(bytecode, outfile);
 }

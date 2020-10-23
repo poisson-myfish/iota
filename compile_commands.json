@@ -1,0 +1,137 @@
+[
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/ast.c",
+   "-o",
+   "objects/ast.o"
+  ],
+  "file": "src/ast.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/include.c",
+   "-o",
+   "objects/include.o"
+  ],
+  "file": "src/include.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/list.c",
+   "-o",
+   "objects/list.o"
+  ],
+  "file": "src/list.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/main.c",
+   "-o",
+   "objects/main.o"
+  ],
+  "file": "src/main.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/parser.c",
+   "-o",
+   "objects/parser.o"
+  ],
+  "file": "src/parser.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/stack.c",
+   "-o",
+   "objects/stack.o"
+  ],
+  "file": "src/stack.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/token.c",
+   "-o",
+   "objects/token.o"
+  ],
+  "file": "src/token.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/tokenizer.c",
+   "-o",
+   "objects/tokenizer.o"
+  ],
+  "file": "src/tokenizer.c"
+ },
+ {
+  "directory": "/home/bob/Workspace/iota",
+  "arguments": [
+   "gcc",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-I",
+   "include/",
+   "src/llvmGenerator.c",
+   "-o",
+   "objects/llvmGenerator.o"
+  ],
+  "file": "src/llvmGenerator.c"
+ }
+]

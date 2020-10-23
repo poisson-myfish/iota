@@ -25,7 +25,7 @@ IotaTokenizer* iotaTokenizer(char* code, size_t codeSize) {
 	tokenizer->tokens = iotaList(sizeof(IotaToken));
 	tokenizer->codeSize = codeSize;
 
-	return tokenizer;
+    return tokenizer;
 }
 
 void iotaTokenizerAdvance(IotaTokenizer* tokenizer) {
@@ -115,6 +115,9 @@ static IotaToken* getKeyword(char* value, size_t length) {
 		return iotaToken(TOKEN_MODULE, value, length);
 	else if (strcmp(value, "return") == 0)
 		return iotaToken(TOKEN_RETURN, value, length);
+
+	else if (strcmp(value, "Int") == 0)
+		return iotaToken(TOKEN_T_INT, value, length);
 
 	return iotaTokenNone();
 }

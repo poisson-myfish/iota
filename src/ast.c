@@ -28,11 +28,12 @@ IotaAst* iotaNoneAst() {
 	return ast;
 }
 
-IotaAst* iotaFunctionAst(char* name) {
+IotaAst* iotaFunctionAst(char* name, IotaNativeType type) {
 	IotaAst* ast = malloc(sizeof(IotaAst));
 	ast->type = AST_FUNCTION;
 	ast->children = iotaList(sizeof(IotaAst));
     ast->name = name;
+	ast->valueType = type;
 
 	return ast;
 }
